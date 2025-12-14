@@ -1,6 +1,6 @@
 
 # Temporary holds: Lecture
-notes/0[9-9]*
+notes/0[2-9]*
 notes/1*
 
 # Temporary holds: Assignments
@@ -10,27 +10,11 @@ problem-sets/00[4-9]
 notes/*/slides_cache/*
 
 # Non-review test files
+midterm/exam*
 final/exam*
 
-# Problem sets: Assigned
-# PS 0
-problem-sets/000/000-questions.qmd
-problem-sets/000/data-raw*
-problem-sets/000/clean-data*
-problem-sets/000/ed.scss
-# PS 1
-problem-sets/001/001-questions.qmd
-problem-sets/001/data-raw*
-problem-sets/001/clean-data*
-problem-sets/001/ed.scss
-# PS 2
-problem-sets/002/002-questions.qmd
-problem-sets/002/data-raw*
-problem-sets/002/clean-data*
-problem-sets/002/ed.scss
-# PS 2
-problem-sets/003/003-questions.qmd
-problem-sets/003/ed.scss
+# Problem sets: All
+problem-sets/*
 
 # Misc files
 *.DS_Store
