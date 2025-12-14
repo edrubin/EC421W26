@@ -1,40 +1,35 @@
-# EC 421, Spring 2025
+# EC 421, Winter 2026
 
-Welcome to **Economics 421: Introduction to Econometrics** (Spring 2025) at the University of Oregon (taught by [Edward Rubin](https://edrub.in) and [Emily Arnesen](https://emilyarnesen.com/)).
+Welcome to **Economics 421: Introduction to Econometrics** (Winter 2026) at the University of Oregon (taught by [Edward Rubin](https://edrub.in) and [Eric Wilken](https://ericwilken.com/)).
 
 ## Syllabus
 
-For information on the course specifics, please see the [syllabus](https://raw.githack.com/edrubin/EC421S25/master/syllabus/syllabus.pdf).
+For information on the course specifics, please see the [syllabus](https://raw.githack.com/edrubin/EC421W26/master/syllabus/syllabus.pdf).
 
 ## Office hours
 
-__Edward Rubin:__ Tuesdays: 1:30p–3:00p ([PLC 530](https://map.uoregon.edu/b83e556a1))
+__Edward Rubin:__ Thursdays: 2:00p–3:30p ([PLC 530](https://map.uoregon.edu/b83e556a1))
 
-__Emily Arnesen:__ Wednesdays, 3:30p–4:30p (Zoom: see Canvas link)
-
-## Final exam
-
-Materials to prepare for the in-class final exam (June 13th):
-
-- [past exams](https://github.com/edrubin/EC421S25?tab=readme-ov-file#exams);
-- [list of topics to know](https://raw.githack.com/edrubin/EC421S25/master/final/prep/final-topics.html);
-- [practice problems](https://raw.githack.com/edrubin/EC421S25/master/final/prep/final-review.html) (no solutions)
-
-The problem sets should also help you review.
+__Eric Wilken:__ TBA
 
 ## Midterm exam
 
-Midterm exam and key:
+Materials to prepare for the in-class midterm exam (TBD):
 
-- [in-class exam](https://github.com/edrubin/EC421S25/blob/master/midterm/exam/exam-inclass.pdf);
-- [in-class exam key](https://github.com/edrubin/EC421S25/blob/master/midterm/exam/exam-inclass-key.pdf)
+- [notes from in-class review](https://github.com/edrubin/EC421W26/blob/master/midterm/prep/inclass-review.pdf);
+- [past exams](https://github.com/edrubin/EC421W26?tab=readme-ov-file#exams);
+- [list of topics to know](https://raw.githack.com/edrubin/EC421W26/master/midterm/prep/topics/midterm-topics.html);
+- [practice problems](https://raw.githack.com/edrubin/EC421W26/master/midterm/prep/review/midterm-review.html) (no solutions)
 
-Materials to prepare for the in-class midterm exam (May 6th):
+The problem sets should also help you review.
 
-- [notes from in-class review](https://github.com/edrubin/EC421S25/blob/master/midterm/prep/inclass-review.pdf);
-- [past exams](https://github.com/edrubin/EC421S25?tab=readme-ov-file#exams);
-- [list of topics to know](https://raw.githack.com/edrubin/EC421S25/master/midterm/prep/topics/midterm-topics.html);
-- [practice problems](https://raw.githack.com/edrubin/EC421S25/master/midterm/prep/review/midterm-review.html) (no solutions)
+## Final exam
+
+Materials to prepare for the in-class final exam (8am on Thursday, 19 March 2026):
+
+- [past exams](https://github.com/edrubin/EC421W26?tab=readme-ov-file#exams);
+- [list of topics to know](https://raw.githack.com/edrubin/EC421W26/master/final/prep/final-topics.html);
+- [practice problems](https://raw.githack.com/edrubin/EC421W26/master/final/prep/final-review.html) (no solutions)
 
 The problem sets should also help you review.
 
@@ -97,13 +92,14 @@ Here are some exams from previous years:
 | Winter 2019 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2019w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2019w-key.pdf) | [exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2019w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2019w-key.pdf) |
 | Spring 2019 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2019s.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2019s-key.pdf) | [exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2019s.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2019s-key.pdf) |
 | Winter 2020 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2020w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2020w-key.pdf) | [exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2020w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2020w-key.pdf) |
-| Winter 2021 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2021w.pdf) |  |
-| Spring 2020 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2020s.pdf) |  |
-| Winter 2022 |  | [home exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2022w-home.pdf) [home key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2022w-home-key.html) |
-| Spring 2022 |  [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2022s.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2022s-key.pdf) |  |
+| Winter 2021 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2021w.pdf) | |
+| Spring 2020 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2020s.pdf) | |
+| Winter 2022 | | [home exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2022w-home.pdf) [home key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2022w-home-key.html) |
+| Spring 2022 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2022s.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2022s-key.pdf) | |
 | Winter 2023 | [home key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2023w-home-key.html) [in-class exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2023w-inclass.pdf) [in-class key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2023w-inclass-key.pdf) | [home exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023w-home.html) [home key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023w-home-key.html) [in-class exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023w-inclass.pdf) [in-class key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023w-inclass-key.pdf) |
 | Spring 2023 | [home exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2023s-home.html) [in-class exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2023s-inclass.pdf) | [home exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023s.html) [in-class exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2023s-inclass.pdf) |
 | Winter 2025 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2025w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2025w-key.pdf) | [exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2025w.pdf) [key](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2025w-key.pdf) |
+| Spring 2025 | [exam](https://raw.githack.com/edrubin/EC421S25/master/midterm/past/midterm-2025s.pdf) | [exam](https://raw.githack.com/edrubin/EC421S25/master/final/past/final-2025s.pdf) |
 
 **Note:** If there is no key posted, then I do not have it and will not distribute it.
 
@@ -111,6 +107,7 @@ Here are some exams from previous years:
 
 Here are links to previous years' course materials as well:
 
+- [Spring 2025](https://github.com/edrubin/EC421S25)
 - [Winter 2025](https://github.com/edrubin/EC421W25)
 - [Winter 2022](https://github.com/edrubin/EC421W22)
 - [Winter 2022](https://github.com/edrubin/EC421W22)
@@ -122,7 +119,7 @@ Here are links to previous years' course materials as well:
 
 ## Homework
 
-Please also see the [syllabus](https://raw.githack.com/edrubin/EC421S25/master/syllabus/syllabus.pdf) for specific information on the homework and grade policies.
+Please also see the [syllabus](https://raw.githack.com/edrubin/EC421W26/master/syllabus/syllabus.pdf) for specific information on the homework and grade policies.
 
 ## Resources
 
