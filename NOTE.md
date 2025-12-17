@@ -17,6 +17,7 @@ Extended visualization applications
 - reporting with `R Markdown` and `bookdown`
 - dashboards with `flexdashboard` or `shinydashboard`
 - `reactable` for interactive tables
+- `learnr` for interactive coding tutorials
 
 Data manipulation
 
