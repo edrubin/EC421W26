@@ -17,11 +17,11 @@ class: inverse, middle
 ```{r Setup, include = F}
 options(htmltools.dir.version = FALSE)
 library(pacman)
-p_load(leaflet, ggplot2, ggthemes, viridis, dplyr, magrittr, knitr)
+p_load(leaflet, plotly, ggplot2, ggthemes, viridis, dplyr, magrittr, knitr)
 # Define pink color
-red_pink <- "#e64173"
+red_pink = "#e64173"
 # Notes directory
-dir_slides <- "~/Dropbox/UO/Teaching/EC421W22/notes/01-intro/"
+dir_slides = "~/Dropbox/UO/Teaching/EC421W22/notes/01-intro/"
 # Knitr options
 opts_chunk$set(
   comment = "#>",
@@ -107,7 +107,7 @@ What does that mean?
 ---
 ```{r, statistical languages, echo = F, fig.height = 7, fig.width = 11, dev = "svg"}
 # The popularity data
-pop_df <- data.frame(
+pop_df = data.frame(
   lang = c("SQL", "Python", "R", "SAS", "Matlab", "SPSS", "Stata"),
   n_jobs = c(107130, 66976, 48772, 25644, 11464, 3717, 1624),
   free = c(T, T, T, F, F, F, F)
@@ -146,7 +146,7 @@ class: inverse, middle
 
 ```{r, example: lm}
 # A simple regression
-{{fit <- lm(dist ~ 1 + speed, data = cars)}}
+{{fit = lm(dist ~ 1 + speed, data = cars)}}
 # Show the coefficients
 coef(summary(fit))
 # A nice, clear table
@@ -267,7 +267,7 @@ theme_pander(base_size = 16)
 # The package for animating ggplot2
 library(gganimate)
 # As before
-gg <- ggplot(
+gg = ggplot(
   data = gapminder %>% filter(continent != "Oceania"),
   aes(gdpPercap, lifeExp, size = pop, color = country)
 ) +
@@ -326,6 +326,65 @@ ease_aes("linear")
 
 ---
 
+# R + Interactive plots (w/ .mono[plotly])
+
+```{r, example: plotly, echo = F, dev = "svg"}
+plot_ly(
+  data = gapminder %>% filter(year == 2007),
+  x = ~gdpPercap,
+  y = ~lifeExp,
+  type = "scatter",
+  mode = "markers",
+  size = ~pop,
+  color = ~continent,
+  colors = viridis::plasma(n = 5, end = .93),
+  text = ~paste(
+    "Country: ", country,
+    "<br>GDP per capita:", scales::dollar(gdpPercap, 1),
+    "<br>Life Expectancy:", scales::comma(lifeExp, 1),
+    "<br>Population:", scales::comma(pop)
+  ),
+  hoverinfo = "text",
+  sizes = c(5, 100)
+) %>%
+  layout(
+    title = "Gapminder data in 2007",
+    xaxis = list(title = "GDP per capita (log scale)", type = "log"),
+    yaxis = list(title = "Life Expectancy")
+  )
+```
+
+---
+class: clear, middle
+
+```{r, example: plotly code, echo = TRUE, eval = FALSE}
+plot_ly(
+  data = gapminder %>% filter(year == 2007),
+  x = ~gdpPercap,
+  y = ~lifeExp,
+  type = "scatter",
+  mode = "markers",
+  size = ~pop,
+  color = ~continent,
+  colors = viridis::plasma(n = 5, end = .93),
+  text = ~paste(
+    "Country: ", country,
+    "<br>GDP per capita:", scales::dollar(gdpPercap, 1),
+    "<br>Life Expectancy:", scales::comma(lifeExp, 1),
+    "<br>Population:", scales::comma(pop)
+  ),
+  hoverinfo = "text",
+  sizes = c(5, 100)
+) %>%
+  layout(
+    title = "Gapminder data in 2007",
+    xaxis = list(title = "GDP per capita (log scale)", type = "log"),
+    yaxis = list(title = "Life Expectancy")
+  )
+
+
+---
+
 # R + Maps
 
 ```{r, example: leaflet, fig.height = 5, dev = "svg"}
@@ -356,7 +415,7 @@ layout: true
   - Register for a student/educator [discount](https://education.github.com/discount_requests/new).
   - For installation guidance and troubleshooting, check out Jenny Bryan's [website](http://happygitwithr.com/).
 
-- __Note:__ Many UO labs have R installed and ready. That said, having a copy of R on your own computer will likely be very convenient for homework, projects, _etc._
+- __Note:__ Many UO labs have R installed and ready (helpful in an pinch).
 
 ---
 
