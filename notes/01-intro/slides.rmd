@@ -286,16 +286,22 @@ __This course__ aims to deepen your knowledge in each of these three areas.
 
 My ".b[big-picture takeaways]" (the .it.slab[intuition] that I hope you form)
 
+--
+
 - .it[most] interesting questions are .slab.pink[causal];
 - .slab.pink[selection into treatment] dominates correlation (esp. cross-sectional);
 - .slab.pink[measurement error] can too;
 - causality comes from .slab.pink[design]—not from models/assumptions;
 - ask about the .slab.pink[counterfactual];
 - .slab.pink[non-stationary] time series will lead you to bad conclusions;
+
+--
 - quantifying .slab.purple[uncertainty] is just as important as the effect estimate;
 - consider .slab.purple[.it[which] population] your data represent;
 - the .slab.purple[mean] is only one of many ways to summarize a population;
 - don’t mistake .slab.purple[mean reversion] for treatment effects/heterogeneity;
+
+--
 - many .slab.orange[maps] are just .it[population];
 - .slab.orange[graphs] should clearly communicate a .it[message]... beautifully.
 
