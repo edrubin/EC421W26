@@ -5,6 +5,7 @@ R_OPTS=--vanilla
 # Name targets -----------------------------------------------------------------
 syllabus: syllabus/syllabus.pdf
 lec01 : notes/01-intro/slides.html notes/01-intro/slides.pdf
+lec01r : notes/01-intro/slides.html notes/01-intro-r/slides.pdf
 lec02 : notes/02-review/slides.html notes/02-review/slides.pdf
 lec03 : notes/03-review/slides.html notes/03-review/slides.pdf
 lec04 : notes/04-heteroskedasticity/slides.html notes/04-heteroskedasticity/slides.pdf
@@ -25,6 +26,11 @@ syllabus/syllabus.pdf : syllabus/syllabus.tex
 notes/01-intro/slides.html : notes/01-intro/slides.rmd
 	Rscript -e "rmarkdown::render('$<')"
 notes/01-intro/slides.pdf : notes/01-intro/slides.html
+	Rscript -e "pagedown::chrome_print('$<', wait = 4, timeout = 120)"
+# Lecture 01(r)
+notes/01-intro-r/slides.html : notes/01-intro-r/slides.rmd
+	Rscript -e "rmarkdown::render('$<')"
+notes/01-intro-r/slides.pdf : notes/01-intro-r/slides.html
 	Rscript -e "pagedown::chrome_print('$<', wait = 4, timeout = 120)"
 # Lecture 02
 notes/02-review/slides.html : notes/02-review/slides.rmd
@@ -83,7 +89,7 @@ notes/12-ml/slides.pdf : notes/12-ml/slides.html
 	Rscript -e "pagedown::chrome_print('$<', wait = 4, timeout = 120)"
 
 # Global targets ---------------------------------------------------------------
-lec-all: lec01 lec02 lec03 lec04 lec05 lec06 lec07 lec08 lec09 lec10 lec11 lec12
+lec-all: lec01 lec01r lec02 lec03 lec04 lec05 lec06 lec07 lec08 lec09 lec10 lec11 lec12
 all: lec-all syllabus
 # Define clean
 clean:

@@ -211,6 +211,7 @@ EC421 asks "**What happens when we violate these assumptions?**"
 OLS still does some amazing things—but you need to know when to be **cautious, confident, or dubious**.
 
 ---
+exclude: true
 
 # Not everything is causal
 
@@ -239,13 +240,25 @@ ggplot(data = tmp, aes(x = year, y = count, color = type)) +
 
 ---
 # Not everything is causal
-## More seriously
+## But what _is_?
 
 Suppose you estimate our sales model for your boss.
 
 $$ \color{#6A5ACD}{\text{Sales}}_i = \hat{\beta}_0 + \hat{\beta}_1 \color{#e64173}{\text{Ad}}_i + \hat{\beta}_2 \color{#e64173}{\text{Price}}_i + \hat{\beta}_3 \color{#e64173}{\text{Comp}}_i + e_i $$
 
 Can you trust that $\hat{\beta}_2$ gives you the actual effect of .pink[price] on .purple[sales]?
+
+--
+
+You should be asking several questions...
+
+--
+
+1. .it[Where] does the .it.pink[variation in price] come from?
+  - Is it .it.pink[random] (.it[exogenous])?
+  - .it.pink[Why] are some products (or times) .it.pink[more] expensive than others?
+1. .it.orange[Whom] do the data represent? Are they .it.orange[relevant] to your setting?
+1. How .it.orange[confident] are you in your answer?
 
 ---
 
@@ -269,382 +282,25 @@ __This course__ aims to deepen your knowledge in each of these three areas.
 - 2–3: __R__
 
 ---
-class: inverse, middle
-# R
-
----
-layout: true
-# R
-
----
-
-## What is R?
-
-To quote the [R project website](https://www.r-project.org):
-
-> R is a free software environment for statistical computing and graphics. It compiles and runs on a wide variety of UNIX platforms, Windows and MacOS.
-
---
-
-What does that mean?
-
-- R was created for the statistical and graphical work required by econometrics.
-
-- R has a vibrant, thriving online community. ([stack overflow](https://stackoverflow.com/questions/tagged/r))
-
-- Plus it's __free__ and __open source__.
-
----
-
-## Why are we using R?
-
-1\. R is __free__ and __open source__—saving both you and the university 💰💵💰.
-
-2\. _Related:_ Outside of a small group of economists, private- and public-sector __employers favor R__ over .mono[Stata] and most competing softwares.
-
-3\. R is very __flexible and powerful__—adaptable to nearly any task, _e.g._, 'metrics, spatial data analysis, machine learning, web scraping, data cleaning, website building, teaching. My website, the TWEEDS website, and these notes all came out of R.
-
----
-
-## Why are we using R?
-
-4\. _Related:_ R imposes __no limitations__ on your amount of observations, variables, memory, or processing power. (I'm looking at __you__, .mono[Stata].)
-
-5\. If you put in the work,<sup>†</sup> you will come away with a __valuable and marketable__ tool.
-
-6\. I 💖 __R__
-
-
-.footnote[
-[†]: Learning R definitely requires time and effort.
-]
-
----
-```{r, statistical languages, echo = F, fig.height = 6, fig.width = 9, dev = "svg"}
-# The popularity data
-pop_df <- data.frame(
-  lang = c("SQL", "Python", "R", "SAS", "Matlab", "SPSS", "Stata"),
-  n_jobs = c(107130, 66976, 48772, 25644, 11464, 3717, 1624),
-  free = c(T, T, T, F, F, F, F)
-)
-pop_df %<>% mutate(lang = lang %>% factor(ordered = T))
-# Plot it
-ggplot(data = pop_df, aes(x = lang, y = n_jobs, fill = free)) +
-geom_col() +
-geom_hline(yintercept = 0) +
-aes(x = reorder(lang, -n_jobs), fill = reorder(free, -free)) +
-xlab("Statistical language") +
-scale_y_continuous(label = scales::comma) +
-ylab("Number of jobs") +
-ggtitle(
-  "Comparing statistical languages",
-  subtitle = "Number of job postings on Indeed.com, 2019/01/06"
-) +
-scale_fill_manual(
-  "Free?",
-  labels = c("True", "False"),
-  values = c(red_pink, "darkslategray")
-) +
-theme_pander(base_size = 17) +
-theme(legend.position = "bottom")
-```
-
----
-
-layout: false
-class: inverse, middle
-# R + Examples
-
----
-
-# R + Regression
-
-```{r, example: lm}
-# A simple regression
-{{fit <- lm(dist ~ 1 + speed, data = cars)}}
-# Show the coefficients
-coef(summary(fit))
-# A nice, clear table
-library(broom)
-tidy(fit)
-```
-
----
-
-# R + Plotting (w/ .mono[plot])
-
-```{r, example: plot, echo = F, dev = "svg"}
-# Load packages with dataset
-library(gapminder)
-# Create dataset
-plot(
-  x = gapminder$gdpPercap, y = gapminder$lifeExp,
-  xlab = "GDP per capita", ylab = "Life Expectancy"
-)
-```
-
----
-
-# R + Plotting (w/ .mono[plot])
-
-```{r, example: plot code, eval = F}
-# Load packages with dataset
-library(gapminder)
-
-# Create dataset
-plot(
-  x = gapminder$gdpPercap, y = gapminder$lifeExp,
-  xlab = "GDP per capita", ylab = "Life Expectancy"
-)
-```
-
----
-
-# R + Plotting (w/ .mono[ggplot2])
-
-```{r, example: ggplot2 v1, echo = F, dev = "svg"}
-# Load packages
-library(gapminder); library(dplyr)
-# Create dataset
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
-geom_point(alpha = 0.75) +
-scale_x_continuous("GDP per capita", label = scales::comma) +
-ylab("Life Expectancy") +
-theme_pander(base_size = 16)
-```
-
----
-
-# R + Plotting (w/ .mono[ggplot2])
-
-```{r, example: ggplot2 v1 code, eval = F}
-# Load packages
-library(gapminder); library(dplyr)
-
-# Create dataset
-ggplot(data = gapminder, aes(x = gdpPercap, y = lifeExp)) +
-geom_point(alpha = 0.75) +
-scale_x_continuous("GDP per capita", label = scales::comma) +
-ylab("Life Expectancy") +
-theme_pander(base_size = 16)
-```
-
----
-
-# R + More plotting (w/ .mono[ggplot2])
-
-```{r, example: ggplot2 v2, echo = F, dev = "svg"}
-# Load packages
-library(gapminder); library(dplyr)
-# Create dataset
-ggplot(
-  data = filter(gapminder, year %in% c(1952, 2002)),
-  aes(x = gdpPercap, y = lifeExp, color = continent, group = country)
-) +
-geom_path(alpha = 0.25) +
-geom_point(aes(shape = as.character(year), size = pop), alpha = 0.75) +
-scale_x_log10("GDP per capita", label = scales::comma) +
-ylab("Life Expectancy") +
-scale_shape_manual("Year", values = c(1, 17)) +
-scale_color_viridis("Continent", discrete = T, end = 0.95) +
-guides(size = F) +
-theme_pander(base_size = 16)
-```
-
----
-
-# R + More plotting (w/ .mono[ggplot2])
-
-```{r, example: ggplot2 v2 code, eval = F}
-# Load packages
-library(gapminder); library(dplyr)
-
-# Create dataset
-ggplot(
-  data = filter(gapminder, year %in% c(1952, 2002)),
-  aes(x = gdpPercap, y = lifeExp, color = continent, group = country)
-) +
-geom_path(alpha = 0.25) +
-geom_point(aes(shape = as.character(year), size = pop), alpha = 0.75) +
-scale_x_log10("GDP per capita", label = scales::comma) +
-ylab("Life Expectancy") +
-scale_shape_manual("Year", values = c(1, 17)) +
-scale_color_viridis("Continent", discrete = T, end = 0.95) +
-guides(size = F) +
-theme_pander(base_size = 16)
-```
-
----
-
-# R + Animated plots (w/ .mono[gganimate])
-
-```{r, example: gganimate, include = F, cache = T, eval = F}
-# The package for animating ggplot2
-library(gganimate)
-# As before
-gg <- ggplot(
-  data = gapminder %>% filter(continent != "Oceania"),
-  aes(gdpPercap, lifeExp, size = pop, color = country)
-) +
-geom_point(alpha = 0.7, show.legend = FALSE) +
-scale_colour_manual(values = country_colors) +
-scale_size(range = c(2, 12)) +
-scale_x_log10("GDP per capita", label = scales::comma) +
-facet_wrap(~continent) +
-theme_pander(base_size = 16) +
-theme(panel.border = element_rect(color = "grey90", fill = NA)) +
-# Here comes the gganimate-specific bits
-labs(title = "Year: {frame_time}") +
-ylab("Life Expectancy") +
-transition_time(year) +
-ease_aes("linear")
-# Save the animation
-anim_save(
-  animation = gg,
-  filename = "ex_gganimate.mp4",
-  path = dir_slides,
-  width = 10.5,
-  height = 7,
-  units = "in",
-  res = 150,
-  nframes = 56
-)
-```
-
-.center[![Gapminder](ex_gganimate.gif)]
-
----
-
-# R + Animated plots (w/ .mono[gganimate])
-
-```{r, example: gganimate code, eval = F}
-# The package for animating ggplot2
-library(gganimate)
-# As before
-ggplot(
-  data = gapminder %>% filter(continent != "Oceania"),
-  aes(gdpPercap, lifeExp, size = pop, color = country)
-) +
-geom_point(alpha = 0.7, show.legend = FALSE) +
-scale_colour_manual(values = country_colors) +
-scale_size(range = c(2, 12)) +
-scale_x_log10("GDP per capita", label = scales::comma) +
-facet_wrap(~continent) +
-theme_pander(base_size = 16) +
-theme(panel.border = element_rect(color = "grey90", fill = NA)) +
-# Here comes the gganimate-specific bits
-labs(title = "Year: {frame_time}") +
-ylab("Life Expectancy") +
-transition_time(year) +
-ease_aes("linear")
-```
-
----
-
-# R + Maps
-
-```{r, example: leaflet, fig.height = 6, dev = "svg"}
-library(leaflet)
-leaflet() %>%
-  addTiles() %>%
-  addMarkers(lng = -123.075, lat = 44.045, popup = "The University of Oregon")
-```
-
----
-class: inverse, middle
-# Getting started with R
-
----
-layout: true
-# Starting R
-
----
-
-## Installation
-
-- Install [R](https://www.r-project.org/).
-
-- Install [.mono[RStudio]](https://www.rstudio.com/products/rstudio/download/preview/).
-
-- __Optional/Overkill:__ [Git](https://git-scm.com/downloads)
-  - Create an account on [GitHub](https://github.com/)
-  - Register for a student/educator [discount](https://education.github.com/discount_requests/new).
-  - For installation guidance and troubleshooting, check out Jenny Bryan's [website](http://happygitwithr.com/).
-
-- __Note:__ Many UO labs have R installed and ready. That said, having a copy of R on your own computer will likely be very convenient for homework, projects, _etc._
-
----
-
-## Resources
-
-### Free(-ish)
-
-- Google (which inevitably leads to StackOverflow)
-- Time
-- ChatGPT, Copilot, and other AI assistants
-- [Data services at the UO library](https://library.uoregon.edu/data-services)
-- Your classmates
-- Your GE and me
-- R resources [here](http://edrub.in/ARE212/resources.html) and [here](https://education.rstudio.com/)
-- [swirl](https://swirlstats.com/) and [learnr](https://cran.r-project.org/web/packages/learnr/index.html)
-
-### Money
-
-Short online courses, e.g., [DataCamp](https://www.datacamp.com)
-
----
-
-## Some R basics
-
-You will dive deeper into R in lab, but here six big points about R:
-
-.more-left[
-
-1. Everything is an __object__.
-
-1. Every object has a __name__ and __value__.
-
-1. You use __functions__ on these objects.
-
-1. Functions come in __libraries__ (__packages__)
-
-1. R will try to __help__ you.
-
-1. R has its __quirks__.
-
-]
-
-.less-right[
-
-`foo`
-
-`foo = 2`
-
-`mean(foo)`
-
-`library(dplyr)`
-
-`?dplyr`
-
-`NA; error; warning`
-
-]
-
----
-exclude: true
-
-## R _vs._ .mono[Stata]
-
-Coming from .mono[Stata], here are a few important changes (benefits):
-
-- Multiple objects and arrays (_e.g._, data frames) can exist in the same workspace (in memory). No more `keep`, `preserve`, `restore`, `snapshot` nonsense!
-
-- (Base) R comes with lots of useful built-in functions—and provides all the tools necessary for you to build your own functions. However, many of the _best_ functions come from external libraries.
-
-- You don't need to `tset` or `xtset` data (you can if you really want... `ts`).
+# Econometrics
+
+My ".b[big-picture takeaways]" (the .it.slab[intuition] that I hope you form)
+
+- .it[most] interesting questions are .slab.pink[causal];
+- .slab.pink[selection into treatment] dominates correlation (esp. cross-sectional);
+- .slab.pink[measurement error] can too;
+- causality comes from .slab.pink[design]—not from models/assumptions;
+- ask about the .slab.pink[counterfactual];
+- .slab.pink[non-stationary] time series will lead you to bad conclusions;
+- quantifying .slab.purple[uncertainty] is just as important as the effect estimate;
+- consider .slab.purple[.it[which] population] your data represent;
+- the .slab.purple[mean] is only one of many ways to summarize a population;
+- don’t mistake .slab.purple[mean reversion] for treatment effects/heterogeneity;
+- many .slab.orange[maps] are just .it[population];
+- .slab.orange[graphs] should clearly communicate a .it[message]... beautifully.
 
 ---
 layout: false
-class: inverse, middle
+class: clear, middle
 
-# Next: (More) Metrics review(s)
+.it.slab[Next:] .mono[R] basics + (More) Metrics review(s)

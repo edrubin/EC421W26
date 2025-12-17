@@ -35,21 +35,23 @@ The problem sets should also help you review.
 
 ## Assignments
 
+Below are the tentatively planning topics for the problem sets.
+
 **Problem Set 0: Review**
-<br>Due: Friday, 18 April 2025 by 5 PM. Submit via [Canvas](https://canvas.uoregon.edu/courses/254921/assignments/1793531).
-<br>Files: [assignment](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/000/000-questions.html) | [data](https://github.com/edrubin/EC421S25/tree/master/problem-sets/000/data-acs.csv) | [solutions](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/000/000-solutions.html)
+<br>Due: TBA
+<br>Files: assignment | data | solutions
 
 **Problem Set 1: Heteroskedasticity, Clustering, and OLS Assumptions**
-<br>Due: Friday, 02 May 2025 by 11:59 PM. Submit via [Canvas](https://canvas.uoregon.edu/courses/261057/assignments/1857218).
-<br>Files: [assignment](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/001/001-questions.html) | [data](https://github.com/edrubin/EC421S25/tree/master/problem-sets/001/vote-data.csv) | [solutions](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/001/001-solutions.html) 
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
 
 **Problem Set 2: Time series data, analyses, and nonstationarity**
-<br>Due: Tuesday, 27 May 2025 by 11:59 PM. Submit via [Canvas](https://canvas.uoregon.edu/courses/261057/assignments/1857218).
-<br>Files: [assignment](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/002/002-questions.html) | [data](https://github.com/edrubin/EC421S25/tree/master/problem-sets/002/data-life.csv) | [solutions](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/002/002-solutions.html) 
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
 
 **Problem Set 3: Problem Set 3: Causality, Instrumental Variables, and Review**
-<br>Due: Saturday, 07 June 2025 by 11:59 PM. Submit via [Canvas](https://canvas.uoregon.edu/).
-<br>Files: [assignment](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/003/003-questions.html) | [solutions](https://raw.githack.com/edrubin/EC421S25/master/problem-sets/003/003-solutions.html) 
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
 
 ## Lecture slides
 
@@ -59,7 +61,8 @@ The slides below (linked by their topic) are .html files that will only work pro
 
 In case you're interested, I created the slides with [`xaringan`](https://github.com/yihui/xaringan/wiki) in [R](cran.r-project.org). If you are thinking of making your own slides/documents, I would suggest [quarto](https://quarto.org/).
 
-1. [Introduction to "Introduction to Econometrics"](https://raw.githack.com/edrubin/EC421S25/master/notes/01-intro/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421S25/master/notes/01-intro/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421S25/blob/master/notes/01-intro/slides.rmd)
+1. [Introduction to "Introduction to Econometrics"](https://raw.githack.com/edrubin/EC421W26/master/notes/01-intro/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421W26/master/notes/01-intro/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421W26/blob/master/notes/01-intro/slides.rmd)
+<br><br>[R Introduction and (R)eview](https://raw.githack.com/edrubin/EC421W26/master/notes/01-intro-r/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421W26/master/notes/01-intro-r/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421W26/blob/master/notes/01-intro-r/slides.rmd)
 
 2. [Review of key math/stat/metrics topics](https://raw.githack.com/edrubin/EC421S25/master/notes/02-review/slides.html)<br>Density functions, deriving the OLS estimators, properties of estimators, statistical inference (standard errors, confidence intervals, hypothesis testing), simulation <br> [PDF](https://raw.githack.com/edrubin/EC421S25/master/notes/02-review/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421S25/blob/master/notes/02-review/slides.rmd)
 
