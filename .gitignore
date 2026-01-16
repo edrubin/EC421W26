@@ -4,7 +4,10 @@ notes/0[2-9]*
 notes/1*
 
 # Temporary holds: Assignments
-problem-sets/00[4-9]
+problem-sets/000/000-questions.qmd
+problem-sets/000/make-data.r
+problem-sets/00[1-9]*
+problem-sets/OLD*
 
 # Notes cache
 notes/*/slides_cache/*
