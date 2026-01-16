@@ -10,7 +10,27 @@ For information on the course specifics, please see the [syllabus](https://raw.g
 
 __Edward Rubin:__ Thursdays: 2:00p–3:30p ([PLC 530](https://map.uoregon.edu/b83e556a1))
 
-__Eric Wilken:__ TBA
+__Eric Wilken:__ Tuesdays: 3:00p–4:00p (_See [Canvas](https://canvas.uoregon.edu/):_ Zoom or [PLC 407](https://map.uoregon.edu/988d3f8a5))
+
+## Assignments
+
+Below are the tentatively planning topics for the problem sets.
+
+**Problem Set 0: Review**
+<br>Due: Tuesday, 20 January 2026 by 11:59 PM
+<br>Files: [assignment](https://raw.githack.com/edrubin/EC421W26/master/problem-sets/000/000-questions.html) | [data](https://github.com/edrubin/EC421S25/tree/master/problem-sets/000/data-ps0.csv) | solutions
+
+**Problem Set 1: Heteroskedasticity, Clustering, and OLS Assumptions**
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
+
+**Problem Set 2: Time series data, analyses, and nonstationarity**
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
+
+**Problem Set 3: Problem Set 3: Causality, Instrumental Variables, and Review**
+<br>Due: TBA
+<br>Files: assignment | data | solutions 
 
 ## Midterm exam
 
@@ -32,26 +52,6 @@ Materials to prepare for the in-class final exam (8am on Thursday, 19 March 2026
 - [practice problems](https://raw.githack.com/edrubin/EC421W26/master/final/prep/final-review.html) (no solutions)
 
 The problem sets should also help you review.
-
-## Assignments
-
-Below are the tentatively planning topics for the problem sets.
-
-**Problem Set 0: Review**
-<br>Due: TBA
-<br>Files: assignment | data | solutions
-
-**Problem Set 1: Heteroskedasticity, Clustering, and OLS Assumptions**
-<br>Due: TBA
-<br>Files: assignment | data | solutions 
-
-**Problem Set 2: Time series data, analyses, and nonstationarity**
-<br>Due: TBA
-<br>Files: assignment | data | solutions 
-
-**Problem Set 3: Problem Set 3: Causality, Instrumental Variables, and Review**
-<br>Due: TBA
-<br>Files: assignment | data | solutions 
 
 ## Lecture slides
 
