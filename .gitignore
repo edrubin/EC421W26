@@ -6,8 +6,6 @@ notes/1*
 # Temporary holds: Assignments
 problem-sets/000/000-questions.qmd
 problem-sets/000/make-data.r
-problem-sets/00[1-9]*
-problem-sets/OLD*
 
 # Notes cache
 notes/*/slides_cache/*
@@ -15,9 +13,6 @@ notes/*/slides_cache/*
 # Non-review test files
 midterm/exam*
 final/exam*
-
-# Problem sets: All
-problem-sets/*
 
 # Misc files
 *.DS_Store

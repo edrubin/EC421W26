@@ -18,7 +18,7 @@ Below are the tentatively planning topics for the problem sets.
 
 **Problem Set 0: Review**
 <br>Due: Tuesday, 20 January 2026 by 11:59 PM
-<br>Files: [assignment](https://raw.githack.com/edrubin/EC421W26/master/problem-sets/000/000-questions.html) | [data](https://github.com/edrubin/EC421S25/tree/master/problem-sets/000/data-ps0.csv) | solutions
+<br>Files: [assignment](https://raw.githack.com/edrubin/EC421W26/master/problem-sets/000/000-questions.html) | [data](https://github.com/edrubin/EC421W26/tree/master/problem-sets/000/data-ps0.csv) | solutions
 
 **Problem Set 1: Heteroskedasticity, Clustering, and OLS Assumptions**
 <br>Due: TBA
