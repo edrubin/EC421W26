@@ -116,6 +116,18 @@ theme_axes <- theme_void() + theme(
 xaringanExtra::use_xaringan_extra(c("tile_view", "fit_screen"))
 ```
 
+# .mono[R] showcase
+
+**[Posit Cloud](https://posit.cloud)**
+
+- Cloud-based RStudio IDE.
+- Free tier available. Also student plans.
+- No installation of R/RStudio required.
+- Easily share projects.
+- Runs in your browser. Code on your phone!
+
+---
+
 # Prologue
 
 ---
