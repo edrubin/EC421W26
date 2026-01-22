@@ -86,7 +86,7 @@ In case you're interested, I created the slides with [`xaringan`](https://github
 
 ## Exams
 
-See the [syllabus](https://raw.githack.com/edrubin/EC421S25/master/syllabus/syllabus.pdf) for specific information on the exams and grades.
+See the [syllabus](https://raw.githack.com/edrubin/EC421W26/master/syllabus/syllabus.pdf) for specific information on the exams and grades.
 
 Here are some exams from previous years:
 
