@@ -127,8 +127,9 @@ Asymptotics and consistency
 
 ## Next
 
-- Midterm!
-- Time series
+- New problem set
+- _Next topic:_ Time series
+- Midterm on Feb. 12
 
 ---
 # .mono[R] showcase

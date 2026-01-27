@@ -1,0 +1,521 @@
+---
+title: "Problem Set 0: Review"
+subtitle: "EC 421: Introduction to Econometrics"
+author: "Edward Rubin"
+format:
+  html:
+    toc: true
+    number-sections: true
+    self-contained: true
+    theme:
+    - cosmo
+    - ed.scss
+editor:
+  render-on-save: true
+params:
+  showanswers: true
+---
+
+## Instructions
+
+[**Due**]{style="text-decoration: underline;"} Upload your **PDF or HTML answers** on [Canvas](https://canvas.uoregon.edu/) *before* 11:59PM on Tuesday, 20 Jan. 2026.
+
+[**Important**]{style="text-decoration: underline;"} You must **submit** your answers as an **HTML or PDF file**. The submitted file should be built from an RMarkdown (`.rmd`) or Quarto (`.qmd`) file. Do not submit the `.rmd` or `.qmd` file. You will not receive credit for it.
+
+If we ask you to create a figure or run a regression, then the figure or the regression results should be in the document that you submit (not just the code—we want the actual figure or regression output with coefficients, standard errors, *etc.*).
+
+[**Integrity**]{style="text-decoration: underline;"} If you are suspected of cheating, then you will receive a zero—for the assignment and possibly for the course. We may report you to the dean. Cheating includes copying from your classmates, from the internet, and from previous assignments.
+
+[**Objective**]{style="text-decoration: underline;"} This problem set has three goals: (1) review the central econometrics topics you covered in EC320; (2) refresh (or build) your [R]{.mono} toolset; (3) start building your intuition about causality within econometrics/regression.
+
+[**README!**]{style="text-decoration: underline;"} The data in this problem set come from a classic labor economics paper (["Evaluating the Econometric Evaluations of Training Programs"](https://business.baylor.edu/scott_cunningham/teaching/lalonde-1986.pdf) by Robert LaLonde) that examined a job-skill training program using a variety of analyses. The program—_The National Supported Work Demonstration_ (NSW) aimed to provide individuals struggling on the job market with job-related training. As with LaLonde and many other papers, we are going to explore how this training program affected participans' earnings.
+
+The table below describes each variable in the dataset. The dataset that I am sharing with you is a modified version of the original datasets available [here](https://users.nber.org/~rdehejia/data/.nswdata2.html).
+
+| Variable name      | Variable description |
+|:-------------------|:---------------------|
+| `treat` | indicator for participation in the NSW program (1 if participated, 0 otherwise) |
+| `re75` | real earnings in 1975 (1982 dollars) |
+| `re78` | real earnings in 1978 (1982 dollars) |
+| `age` | age measured in years |
+| `education` | education measured in years |
+| `black` | indicator for race (1 if black, 0 otherwise) |
+| `hispanic` | indicator for Hispanic ethnicity (1 if Hispanic, 0 otherwise) |
+| `married` | indicator for marital status (1 if married, 0 otherwise) |
+| `nodegree` | indicator for high school diploma (1 if no degree, 0 otherwise) |
+| `data_id` | character variable describing the data source ('NSW' or 'PSID') |
+
+: Variable names and descriptions
+
+## Setup 
+
+**[00]** Let's start by loading the `R` packages.
+
+You will need to install any packages that are not already installed. After you've installed them one time, you will not need to install them again. (The `pacman` package makes this easier; see the hint below.)
+
+- You will likely want to use `tidyverse` and `here` (among others).
+- *Also:* `pacman` and its `p_load()` function make package management easier—you just use `p_load()` to load packages, and `R` will install the packages if they're not already installed. E.g., use `p_load(tidverse, here)` after you load the `pacman` package with `library(pacman)`. Remember that you will have to install `pacman` (`install.packages("pacman")`) if you have not installed it already.
+
+Here's an example where I load five packages:
+
+- `tidyverse` (for data manipulation),
+- `scales` (for formatting numbers),
+- `patchwork` (for combining plots),
+- `fixest` (for regressions),
+- `here` (for managing file paths).
+
+```{r, answer00}
+
+# Load packages using 'pacman'
+library(pacman)
+p_load(tidyverse, scales, patchwork, fixest, here)
+```
+
+**[01]** Now load the data (stored in `data-ps0.csv`).
+
+As described above, I saved the data as a CSV, so you'll want to use a function that can read CSV files.
+
+Examples of functions that can read a CSV file:
+
+- `read_csv()` in the `readr` package, which is part of the `tidyverse`;
+- `fread()` in the `data.table` package;
+- `read.csv()`, which is available without loading any packages. 
+
+_Hint:_ Use the `here()` function to create the file path to the data file. For example, if your data file is in a folder called `data` in your project directory and is called `my_data.csv`, then you would use `here('data', 'my-data.csv')` to create the file path, _e.g._,
+
+```{r, hint01}
+#| eval: false
+
+# Load data
+acs_df = here('data', 'my-data.csv') |> read_csv()
+```
+
+You will need to adjust the file path to (1) match where the data file is stored in your project directory and (2) match the name of our data file.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} I'm using `read_csv()` from the `tidyverse` package to load the data.
+
+```{r, answer01}
+
+# Load data
+nsw_df = here('problem-sets', '000', 'data-ps0.csv') |> read_csv()
+```
+::::
+:::
+
+## Get to know your data
+
+The first step in any data analysis is to get to know your data. This includes understanding the variables, their types, their distributions, and any missing data.
+
+**[02]** Let's start simply: How many observations (rows) are in the dataset? How many variables? Are any observations missing data?
+
+*Hints:*
+
+1. The functions `dim()`, `nrow()`, `ncol()` show the number of rows and columns in a dataset, *e.g.*, `nrow(some_data)`.
+1. The function `na.omit()` removes observations with _any_ missing data.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer02}
+ 
+# The number of observations in the dataset
+nsw_df |> nrow() |> comma()
+# The number of variables
+nsw_df |> ncol()
+# The number of observations without missing data
+nsw_df |> na.omit() |> nrow() |> comma()
+```
+
+We have `r nsw_df |> nrow() |> comma()` total observations in the dataset, `r nsw_df |> ncol()` variables, and `r nsw_df |> na.omit() |> nrow() |> comma()` observations without any missing data. Thus, there are no observations with missing data.
+
+::::
+:::
+
+**[03]** Are there any variables that are not numeric? If so, which ones?
+
+_Hint_: The `glimpse()` function from the `tibble` package (part of the `tidyverse`) provides a nice summary of each variable in a dataset, including its type.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans} 
+
+```{r, answer03}
+
+# Glimpse the dataset to see variable types
+nsw_df |> glimpse()
+```
+
+Yes, there is one non-numeric variable: `data_id`, which is a character variable indicating the data source (either 'NSW' or 'PSID'). (You could have also learned this from the data description table above.)
+
+::::
+:::
+
+## Summarizing data
+
+Time to make a few figures. Simple summaries and visualizations are fantastic ways to get to know the data and to try to figure out any potential issues/features.
+
+**[04]** Create histograms of individuals' real earnings in 1975 and 1978 (`re75` and `re78` variables).
+
+*Important:* Make sure to label your axes. A title would be good too. Aesthetics (colors, themes, *etc.*) are up to you.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans} I'm going to go with `ggplot2` today.
+
+```{r, answer04a}
+#| fig-cap: "Histogram of real earnings in 1975"
+
+ggplot(data = nsw_df, aes(x = re75)) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Real earnings in 1975', labels = dollar) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+```{r, answer04b}
+#| fig-cap: "Histogram of real earnings in 1978"
+
+ggplot(data = nsw_df, aes(x = re78)) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Real earnings in 1978', labels = dollar) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+::::
+:::
+
+**[05]** Do the histograms in **[04]** provide any insights about the NSW program's efficacy? Explain your answer.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans} The histograms do not provide insights into the program's effects. We would need to compare the distributions of NSW participants to non-participants to get a sense of the program's efficacy—and we would need no omitted-variable issues.
+
+::::
+:::
+
+**[06]** Now create separate histograms of individuals' real earnings in 1975 by whether they participated in the NSW program (`treat == 1`) or not (`treat == 0`).
+
+_Hint:_ You can use the `filter()` function to create separate datasets for participants and non-participants.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans} I'm going to go with `ggplot2` today.
+
+```{r, answer06a}
+#| fig-cap: "Histogram of real earnings in 1975 for NSW participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 1),
+  aes(x = re75)
+) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Real earnings in 1975', labels = dollar) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+```{r, answer06b}
+#| fig-cap: "Histogram of real earnings in 1975 for NSW non-participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 0),
+  aes(x = re75)
+) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Real earnings in 1975', labels = dollar) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+::::
+:::
+
+**[07]** Participants in the NSW program received jobs training between 1975 and 1978—_i.e._, after their real earnings were recorded in 1975. Based upon the histograms in **[06]**, do NSW participants and non-participants appear to have similar earnings distributions in 1975 (prior to the program)? Briefly explain your answer.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} Yes! The earnings distributions for participants and non-participants differed substantially 1975. NSW participants had much lower earnings in 1975 than non-participants—_e.g._, most participants made less than $5,000, while many non-participants made more than $25,000. This difference makes sense, as the pgrogram targeted individuals struggling in the job market.
+
+::::
+:::
+
+**[08]** Why would a difference in earnings distributions in 1975 (before the NSW program) between participants and non-participants be a problem for estimating the effect of the NSW program on earnings in 1978?
+
+_Hint:_ Think about exogeneity and omitted-variable bias.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} A difference in earnings distributions in 1975 between participants and non-participants would be a problem for estimating the effect of the NSW program on earnings in 1978 because it suggests that the two groups are not comparable. A regression comparing earnings in 1978 between participants and non-participants would likely suffer from omitted-variable bias, as there are likely unobserved factors that affect both the likelihood of participating in the program and earnings in 1978. In other words, we would likely violate the exogeneity assumption of OLS.
+::::
+:::
+
+**[09]** Do the participants and non-participants appear to differ along other dimensions? Create two histograms that compare the two groups along another variable.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans} Let's look at age...
+
+```{r, answer09a}
+#| fig-cap: "Histogram of age for NSW participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 1),
+  aes(x = age)
+) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Age', labels = comma) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+```{r, answer09b}
+#| fig-cap: "Histogram of age for NSW non-participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 0),
+  aes(x = age)
+) +
+geom_histogram(bins = 30, fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Age', labels = comma) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+There's a pretty clear difference between the two groups along age: NSW participants tend to be younger than non-participants.
+
+Now let's look at education...
+
+```{r, answer09c}
+#| fig-cap: "Histogram of education for NSW participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 1),
+  aes(x = education)
+) +
+geom_histogram(fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Education', labels = comma) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+```{r, answer09d}
+#| fig-cap: "Histogram of education for education non-participants"
+
+ggplot(
+  data = nsw_df |> filter(treat == 0),
+  aes(x = education)
+) +
+geom_histogram(fill = 'slateblue', color = 'grey20') +
+scale_x_continuous('Education', labels = comma) +
+scale_y_continuous('Number of individuals', labels = comma) +
+theme_minimal(base_size = 12, base_family = 'Fira Sans Condensed')
+```
+
+::::
+:::
+
+**[10]** Another way to summarize the data is to look at summary statistics. Find the mean of real earnings in 1975 (`re75`) for both participants and non-participants.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer10}
+
+# Mean of real earnings in 1975 by group
+nsw_df |> 
+  group_by(treat) |> 
+  summarize(mean_re75 = mean(re75, na.rm = TRUE)) |> 
+  mutate(mean_re75 = dollar(mean_re75))
+```
+
+The mean real earnings in 1975 for NSW participants is `r nsw_df |> filter(treat == 1) |> summarize(mean_re75 = mean(re75, na.rm = TRUE)) |> pull(mean_re75) |> dollar()`, while the mean for non-participants is `r nsw_df |> filter(treat == 0) |> summarize(mean_re75 = mean(re75, na.rm = TRUE)) |> pull(mean_re75) |> dollar()`.
+
+::::
+:::
+
+**[11]** Finally, let's formally (statistically) test whether participants and non-participants differed in their pre-treatment, 1975 real earnings.
+
+1. Regress real earnings in 1975 (`re75`) on the indicator for participation in the NSW program (`treat`) (with an intercept).
+2. Provide a summary of the regression (estimated intercept, coefficient, standard errors, _etc._).
+3. Interpret the intercept and coefficient from the regression.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans}
+
+```{r, answer11}
+
+# Regress real earnings in 1975 on treatment indicator
+est11 = feols(re75 ~ treat, data = nsw_df)
+# Display the regression results
+est11 |> etable()
+```
+
+The intercept is the estimated mean real earnings in 1975 for non-participants. Thus, we estimate that non-participants had mean real earnings of approximately `r est11$coefficients[1] |> dollar()` in 1975.
+
+The coefficient on `treat` is the estimated difference in mean real earnings in 1975 between participants and non-participants. Thus, we estimate that participants' average real earnings in 1975 was approximately `r est11$coefficients[2] |> abs() |> dollar()` lower than non-participants in 1975.
+
+::::
+:::
+
+**[12]** Using the regression results from **[11]**: Conduct a hypothesis test of whether NSW participants and non-participants differed in their real earnings in 1975. Use a significance level of 5%.
+
+Use the following steps to guide your hypothesis test:
+
+1. State the null and alternative hypotheses.
+2. Report the test statistic and p-value.
+3. State whether you reject or fail to reject the null hypothesis.
+4. Provide a brief conclusion in the context of the problem.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+
+[Answer]{.ans}
+
+1. The null hypothesis is that there is no difference in 1975 real earnings between NSW participants and non-participants (_i.e._, $H_0: \beta_{1} = 0$). The alternative hypothesis is that there is, indeed, a difference in 1975 real earnings between NSW participants and non-participants (_i.e._, $H_A: \beta_{1} \neq 0$).
+2. The $t$ statistic for this test is `r est11$coeftable[2,3] |> comma(.01)`, and the associated _p_-value is less than 0.0001.
+3. As the _p_-value is less than 0.05, we reject the null hypothesis at the 5% significance level.
+4. We conclude that we have sufficient statistical evidence to suggest that NSW participants and non-participants differed in their real earnings in 1975.
+
+::::
+:::
+
+## Analyzing the NSW's impact
+
+Now that we have a sense of the data, let's dig into the impact of the NSW program.
+
+**[13]** Regress real earnings in 1978 (`re78`) on the indicator for participation in the NSW program (`treat`) (with an intercept).
+
+Report your results (_e.g._, a table with the estimated intercept, coefficient, standard errors).
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer13}
+# Regress real earnings in 1978 on treatment indicator
+est13 = feols(re78 ~ treat, data = nsw_df)
+# Display the regression results
+est13 |> etable()
+```
+::::
+:::
+
+**[14]** Interpret the intercept and coefficient from the regression in **[13]**.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} The intercept is the estimated mean real earnings in 1978 for NSW non-participants. Thus, we estimate that non-participants had mean real earnings of approximately `r est13$coefficients[1] |> dollar()` in 1978.
+
+The coefficient on `treat` is the estimated difference in mean real earnings in 1978 between participants and non-participants. Thus, we estimate that participants' average real earnings in 1978 was approximately `r est13$coefficients[2] |> abs() |> dollar()` _lower_ than non-participants in 1978.
+::::
+:::
+
+**[15]** Based upon the regression in **[13]** and your work in the preceding section: Did the NSW program appear to help participants increase their earnings? Explain your answer.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} The coefficient on `treat` (the effect of the NSW program) is negative and statistically significant. If we interpret this coefficient causally, then we would conclude that participation in the NSW actually _hurt_ participants' earnings.
+
+However, we should be cautious about interpreting this result causally. As we saw in the previous section, participants and non-participants differed substantially in their pre-treatment earnings and along other dimensions. Thus, our regression likely suffers from omitted-variable bias, and we cannot interpret estimates on NSW participation causally.
+::::
+:::
+
+**[16]** Given our previous findings that NSW participants and non-participants differed in their pre-treatment earnings (and along other dimensions), let's control for each of the following variables: `re75`, `age`, `education`, `black`, `hispanic`, `married`, and `nodegree`.
+
+Regress real earnings in 1978 (`re78`) on the indicator for participation in the NSW program (`treat`) _and_ each of the variables listed above (along with an intercept). Report the results (again, in a table).
+
+Just to be clear: You regression should have one outcome variable (`re78`) and eight independent variables (`treat`, `re75`, `age`, `education`, `black`, `hispanic`, `married`, and `nodegree`).
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer16}
+# Regress real earnings in 1978 on treatment indicator and controls
+est16 =
+  feols(
+    re78 ~ treat + re75 + age + education + black + hispanic + married + nodegree,
+    data = nsw_df
+  )
+# Display the regression results
+est16 |> etable()
+```
+::::
+:::
+
+**[17]** Does "controlling" for these additional variales meaningfully change your estimate of the effect of the NSW program on real earnings in 1978? Explain your answer.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} Yes! While the coefficient on program participation (`treat`) is still negative, it is _much_ smaller in magnitude and no longer significantly different from zero.
+::::
+:::
+
+**[18]** It turns out that the individuals in the dataset come from two different sources:
+
+1. a randomized experiment of the NSW program (the 'NSW' data, where the variable `data_id` equals `"NSW"`),
+2. a non-experimental comparison group from the Panel Study of Income Dynamics (the 'PSID' data, where the variable `data_id` equals `"PSID"`).
+
+Create a new dataset that only includes individuals from the randomized NSW experiment (_i.e._, subset/filter the data to only include observations where `data_id == 'NSW'`).
+
+_Hint:_ You can use the `filter()` function to create a new dataset that only includes observations that meet certain criteria. For example,
+```{r, hint18}
+#| eval: false
+marry_df = nsw_df |> filter(married == 1)
+```
+creates a new dataset called `marry_df` that only includes observations where the `married` variable equals `1`.
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer18}
+# Create new dataset with only NSW experiment participants
+exp_df = nsw_df |> filter(data_id == 'NSW')
+```
+::::
+:::
+
+**[19]** In this new dataset (the individuals where `data_id == 'NSW'`), whether individuals participated in the NSW program (`treat` variable) was randomly assigned.
+
+Using this new dataset, regress real earnings in 1978 (`re78`) on the indicator for participation in the NSW program (`treat`) (with an intercept). Report your results (a table with the estimated intercept, coefficient, standard errors, _etc._).
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans}
+
+```{r, answer19}
+# Regress real earnings in 1978 on treatment indicator in experimental dataset
+est19 = feols(re78 ~ treat, data = exp_df)
+# Display the regression results
+est19 |> etable()
+```
+::::
+:::
+
+**[20]** Based upon the regression in **[19]**: Did the NSW program appear to help participants increase their earnings? Explain your answer.
+
+_Hint:_ Why is this regression different from the regression in **[13]**? How does the random assignment of NSW participation for this subset of individuals change "things"?
+
+:::{.content-hidden unless-meta="params.showanswers"}
+::::{.answer}
+[Answer]{.ans} The coefficient on `treat` (the effect of the NSW program) is positive and statistically significant (at the 10 percent level). If we interpret this coefficient causally, then we would conclude that participation in the NSW program increased participants' earnings by approximately `r est19$coefficients[2] |> dollar()`.
+
+We can feel more confident in a causal interpretation of this regression (relative to the regression in **[13]**) because NSW participation was randomly assigned for this subset of individuals. The random assignment helps ensure exogeneity holds—_i.e._, no omitted-variable bias, as random participation should not correlate with "omitted" factors that affect 1978 earnings.
+::::
+:::
+
+
+[**Reminder**]{style="text-decoration: underline;"} Submit your final file to Canvas as PDF or HTML only.<br>(Do not submit it as `.rmd` or `.qmd`.)

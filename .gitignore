@@ -1,12 +1,10 @@
 
 # Temporary holds: Lecture
-notes/0[2-9]*
-notes/1*
 
 # Temporary holds: Assignments
-problem-sets/000/000-questions.qmd
-problem-sets/000/000-solutions.html
-problem-sets/000/make-data.r
+problem-sets/001/001-questions.qmd
+problem-sets/001/001-solutions.html
+problem-sets/001/make-data.r
 
 # Notes cache
 notes/*/slides_cache/*
