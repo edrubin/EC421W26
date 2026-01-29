@@ -125,6 +125,10 @@ Asymptotics, probability limits, and consistency
 
 Time series
 
+## Soon
+
+Problem set and midterm
+
 ---
 layout: true
 # Asymptotics and consistency

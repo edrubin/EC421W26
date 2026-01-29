@@ -74,7 +74,7 @@ In case you're interested, I created the slides with [`xaringan`](https://github
 
 6. [Consistency and OLS in asymptopia](https://raw.githack.com/edrubin/EC421W26/master/notes/06-consistency/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421W26/master/notes/06-consistency/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421W26/blob/master/notes/06-consistency/slides.rmd)
 
-7. [Introduction to time series](https://raw.githack.com/edrubin/EC421S25/master/notes/07-time-series/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421S25/master/notes/07-time-series/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421S25/blob/master/notes/07-time-series/slides.rmd)
+7. [Introduction to time series](https://raw.githack.com/edrubin/EC421W26/master/notes/07-time-series/slides.html) <br> [PDF](https://raw.githack.com/edrubin/EC421W26/master/notes/07-time-series/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421W26/blob/master/notes/07-time-series/slides.rmd)
 
 8. [Autocorrelated disturbances](https://raw.githack.com/edrubin/EC421S25/master/notes/08-autocorrelation/slides.html)<br>Implications, testing, and estimation. Also: introduction `ggplot2` and user-defined functions. <br> [PDF](https://raw.githack.com/edrubin/EC421S25/master/notes/08-autocorrelation/slides.pdf) | [.Rmd](https://github.com/edrubin/EC421S25/blob/master/notes/08-autocorrelation/slides.Rmd)
 
