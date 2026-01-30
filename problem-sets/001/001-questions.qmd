@@ -36,18 +36,26 @@ Dataset possibilities:
 - https://ghdx.healthdata.org/record/ihme-data/united-states-life-expectancy-by-county-race-ethnicity-2000-2019
 
 
-| Variable name      | Variable description |
-|:-------------------|:---------------------|
-| `treat` | indicator for participation in the NSW program (1 if participated, 0 otherwise) |
-| `re75` | real earnings in 1975 (1982 dollars) |
-| `re78` | real earnings in 1978 (1982 dollars) |
-| `age` | age measured in years |
-| `education` | education measured in years |
-| `black` | indicator for race (1 if black, 0 otherwise) |
-| `hispanic` | indicator for Hispanic ethnicity (1 if Hispanic, 0 otherwise) |
-| `married` | indicator for marital status (1 if married, 0 otherwise) |
-| `nodegree` | indicator for high school diploma (1 if no degree, 0 otherwise) |
-| `data_id` | character variable describing the data source ('NSW' or 'PSID') |
+| Variable name       | Variable type | Variable description |
+|:--------------------|:--------------|:---------------------|
+| `county_name`       | character     | County name |
+| `county_code`       | integer       | County FIPS code |
+| `state_abb`         | character     | State abbreviation |
+| `income_quartile`   | character     | Income quartile (1 or 4) |
+| `life_exp`          | numeric       | Life expectancy (years) |
+| `pct_uninsured`     | numeric       | Percent uninsured |
+| `poverty_rate`      | numeric       | Share below poverty line |
+| `pct_religious`     | numeric       | Percent religious |
+| `pct_black`         | numeric       | Percent Black |
+| `pct_hispanic`      | numeric       | Percent Hispanic |
+| `unemployment_rate` | numeric       | Unemployment rate |
+| `median_hh_inc`     | numeric       | Median household income |
+| `is_urban`          | integer       | Urban county indicator (1 or 0) |
+| `pop`               | integer       | County population |
+| `pop_density`       | numeric       | Population density |
+| `pct_smoke`         | numeric       | Percent who smoke |
+| `pct_obese`         | numeric       | Percent obese (BMI) |
+| `pct_exercise`      | numeric       | Percent who exercise |
 
 : Variable names and descriptions
 

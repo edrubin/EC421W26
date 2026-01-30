@@ -4,7 +4,6 @@
 # Temporary holds: Assignments
 problem-sets/001/001-questions.qmd
 problem-sets/001/001-solutions.html
-problem-sets/001/make-data.r
 
 # Notes cache
 notes/*/slides_cache/*
