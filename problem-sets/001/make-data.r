@@ -3,7 +3,6 @@
   library(pacman)
   p_load(fastverse, stringr, here)
 
-
 # Data Download --------------------------------------------------------------------------
   # Download the life-expectancy inequality data
   le_dt =
@@ -28,7 +27,6 @@
     co_dt,
     here('problem-sets', '001', 'data-raw', 'county-characteristics.csv')
   )
-
 
 # Clean data -----------------------------------------------------------------------------
   # Merge desired subsets of the two data sets
