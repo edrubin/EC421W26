@@ -5,7 +5,7 @@ Welcome to **Economics 421: Introduction to Econometrics** (Winter 2026) at the 
 
 ## Final exam
 
-Materials to prepare for the in-class final exam (8am on Thursday, 19 March 2026):
+Materials to prepare for the [in-class final exam](final/exam/exam-inclass-print.pdf) (and its [key](final/exam/exam-key.pdf)):
 
 - [in-class review](final/prep/inclass-review.pdf);
 - [past exams](https://github.com/edrubin/EC421W26?tab=readme-ov-file#exams);

@@ -8,7 +8,6 @@
 notes/*/slides_cache/*
 
 # Non-review test files
-final/exam/*
 
 # Misc files
 *.DS_Store
